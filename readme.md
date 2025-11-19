@@ -1,26 +1,26 @@
-# React Email Starter
+# React Email with react-intl 
 
-A live preview right in your browser so you don't need to keep sending real emails during development.
+This example shows how to use Resend with [react-intl](https://formatjs.github.io/docs/react-intl).
 
-## Getting Started
+## Instructions
 
-First, install the dependencies:
+1. Install dependencies
 
-```sh
+  ```sh
 npm install
-# or
-yarn
-```
+  ```
 
-Then, run the development server:
+2. Run Preview Server locally:
 
-```sh
+  ```sh
 npm run dev
-# or
-yarn dev
-```
+  ```
 
-Open [localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Open URL in the browser:
+
+  ```
+http://localhost:3000
+  ```
 
 ## License
 
