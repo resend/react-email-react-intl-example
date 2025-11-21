@@ -1,7 +1,5 @@
 {
-  "name": "react-email-starter",
-  "version": "1.1.0",
-  "private": true,
+  "name": "react-email-with-react-intl-example",
   "scripts": {
     "build": "email build",
     "dev": "email dev",
