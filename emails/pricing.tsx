@@ -1,5 +1,5 @@
 import { Html, Head, Preview, Body, Container, Section, Text, Button, Hr, Tailwind } from "@react-email/components";
-import { IntlProvider, FormattedMessage, useIntl } from "react-intl";
+import { createIntl } from "react-intl";
 
 interface PricingProps {
   locale: 'pt' | 'en';
@@ -35,8 +35,14 @@ const ptMessages = {
   'No credit card required. 14-day free trial available.': 'Não é necessário cartão de crédito. Teste gratuito de 14 dias disponível.',
 };
 
-function PricingRoot() {
-  const { formatMessage } = useIntl();
+export function Pricing({
+  locale
+}: PricingProps) {
+  const messages = locale === 'en' ? enMessages : ptMessages;
+  const { formatMessage } = createIntl({
+    locale,
+    messages,
+  });
 
   return (
     <Tailwind>
@@ -49,16 +55,16 @@ function PricingRoot() {
           <Container className="bg-white rounded-[12px] mx-auto max-w-[500px] p-[24px]">
             <Section className="bg-white border border-solid border-gray-300 rounded-[12px] text-gray-600 p-[28px] w-full text-left mb-0">
               <Text className="text-indigo-600 text-[12px] leading-[20px] font-semibold tracking-wide mb-[16px] mt-[16px] uppercase">
-                <FormattedMessage id="Exclusive Offer" />
+                {formatMessage({ id: "Exclusive Offer" })}
               </Text>
               <Text className="text-[30px] font-bold leading-[36px] mb-[12px] mt-0">
                 <span className="text-[rgb(16,24,40)]">$12</span>{' '}
                 <span className="text-[16px] font-medium leading-[20px]">
-                  <FormattedMessage id="/ month" />
+                  {formatMessage({ id: "/ month" })}
                 </span>
               </Text>
               <Text className="text-gray-700 text-[14px] leading-[20px] mt-[16px] mb-[24px]">
-                <FormattedMessage id="We've handcrafted the perfect plan tailored specifically for your needs. Unlock premium features at an unbeatable value." />
+                {formatMessage({ id: "We've handcrafted the perfect plan tailored specifically for your needs. Unlock premium features at an unbeatable value." })}
               </Text>
               <ul className="text-gray-500 text-[14px] leading-[24px] mb-[32px] pl-[14px]">
                 {[
@@ -69,7 +75,9 @@ function PricingRoot() {
                   'Seamless integration with your favorite tools',
                 ].map((feature) => (
                   <li key={feature} className="mb-[12px] relative">
-                    <span className="relative"><FormattedMessage id={feature} /></span>
+                    <span className="relative">
+                      {formatMessage({ id: feature })}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -77,14 +85,14 @@ function PricingRoot() {
                 href="#"
                 className="bg-indigo-600 rounded-[8px] box-border text-white inline-block text-[16px] leading-[24px] font-bold tracking-wide mb-[24px] max-w-full p-[14px] text-center w-full"
               >
-                <FormattedMessage id="Claim Your Special Offer" />
+                {formatMessage({ id: 'Claim Your Special Offer' })}
               </Button>
               <Hr />
               <Text className="text-gray-500 text-[12px] leading-[16px] italic mt-[24px] mb-[6px] text-center">
-                <FormattedMessage id="Limited time offer - Upgrade now and save 20%" />
+                {formatMessage({ id: 'Limited time offer - Upgrade now and save 20%' })}
               </Text>
               <Text className="text-gray-500 text-[12px] m-0 leading-[16px] text-center">
-                <FormattedMessage id="No credit card required. 14-day free trial available." />
+                {formatMessage({ id: 'No credit card required. 14-day free trial available.' })}
               </Text>
             </Section>
           </Container>
@@ -94,19 +102,8 @@ function PricingRoot() {
   );
 }
 
-export function Pricing({
-  locale
-}: PricingProps) {
-  const messages = locale === 'en' ? enMessages : ptMessages;
-  return (
-    <IntlProvider locale={locale} messages={messages}>
-      <PricingRoot />
-    </IntlProvider>
-  );
-}
-
 export default Pricing;
 
 Pricing.PreviewProps = {
-  locale: 'en',
+  locale: 'pt',
 } satisfies PricingProps;
