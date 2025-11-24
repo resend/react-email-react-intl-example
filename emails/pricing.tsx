@@ -74,10 +74,8 @@ export function Pricing({
                   'Priority support with 24-hour response time',
                   'Seamless integration with your favorite tools',
                 ].map((feature) => (
-                  <li key={feature} className="mb-[12px] relative">
-                    <span className="relative">
-                      {formatMessage({ id: feature })}
-                    </span>
+                  <li key={feature} className="mb-[12px]">
+                    {formatMessage({ id: feature })}
                   </li>
                 ))}
               </ul>
