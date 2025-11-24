@@ -105,5 +105,5 @@ export function Pricing({
 export default Pricing;
 
 Pricing.PreviewProps = {
-  locale: 'pt',
+  locale: 'en',
 } satisfies PricingProps;
