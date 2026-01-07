@@ -14,11 +14,11 @@ import {
 import { createIntl } from 'react-intl';
 
 interface WelcomeProps {
-  locale: 'pt' | 'en';
+  locale: 'pt' | 'es' | 'en';
   name: string;
 }
 
-export async function Welcome({ locale, name }: WelcomeProps) {
+export default async function WelcomeEmail({ locale, name }: WelcomeProps) {
   const { formatMessage } = createIntl({
     locale,
     messages: await import(`../messages/${locale}/welcome-email.json`),
@@ -59,10 +59,7 @@ export async function Welcome({ locale, name }: WelcomeProps) {
   );
 }
 
-export default Welcome;
-
-Welcome.PreviewProps = {
-  name: 'John Lennon',
+WelcomeEmail.PreviewProps = {
   locale: 'en',
+  name: 'John Lennon',
 };
-
